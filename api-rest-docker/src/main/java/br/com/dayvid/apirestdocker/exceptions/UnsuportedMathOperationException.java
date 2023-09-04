@@ -11,4 +11,7 @@ public class UnsuportedMathOperationException extends RuntimeException{
     @Serial
     private static final long serialVersionUID = 1L;
 
+    public UnsuportedMathOperationException(String ex) {
+        super(ex);
+    }
 }
