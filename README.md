@@ -24,4 +24,4 @@
 
 ### Integrating the API to the Database
 
-- 
+- Creating database, setting connection properties
