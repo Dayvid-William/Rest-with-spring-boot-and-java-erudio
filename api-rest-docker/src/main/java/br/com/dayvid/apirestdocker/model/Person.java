@@ -1,18 +1,32 @@
 package br.com.dayvid.apirestdocker.model;
 
+import jakarta.persistence.*;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity // cria uma connecção com o banco através da anotation @Entity do jpa
+@Table(name = "person") // indica a que tabela do banco de dados esse objeto se referência
 public class Person implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
+    @Id //já não permite o id ser nulo memso sem usar a anotation nullable = False
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //torna o id auto incremental adicionando 1 a cada novo id
     private Long id;
+
+    @Column(name = "first_name", nullable = false, length = 80) //funciona para referenciar qual coluna do banco esse atributo representa (só e nescessario caso o nome seja diferente)
     private String firstName;
+
+    @Column(name = "Last_name", nullable = false, length = 80 )// length define o tamanho da cadeia de caracteres
     private String lastName;
+
+    @Column(nullable = false, length = 100)
     private String address;
+
+    @Column(nullable = false, length = 6)
     private String gender;
 
     public Person() {}
