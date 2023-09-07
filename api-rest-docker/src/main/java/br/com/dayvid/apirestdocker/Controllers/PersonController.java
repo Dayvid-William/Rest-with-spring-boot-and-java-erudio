@@ -4,6 +4,7 @@ import br.com.dayvid.apirestdocker.model.Person;
 import br.com.dayvid.apirestdocker.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -12,32 +13,33 @@ import java.util.List;
 public class PersonController {
     //private PersonServices service = new PersonServices();
 
-    @Autowired // O spring boot fica responsavel pela instanciação do objeto de forma dinamica (e preciso ter a anotação @Service ou outra que seja um Alias(ou seja anotações injetadas) no objeto origem)
+    @Autowired // O spring boot fica responsável pela instanciação do objeto de forma dinâmica (e preciso ter a anotação @Service ou outra que seja um Alias(ou seja, anotações injetadas) no objeto origem)
     private PersonServices service;
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Person> findAll() {
         return service.findAll();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Person findById(@PathVariable(value = "id")Long id) {
         return service.findById(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)// produz um JSON e consume JSON
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)// Produz um JSON e consume JSON
     public Person create(@RequestBody Person person) { // Recebe o objeto person via body
         return service.create(person);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)// produz um JSON e consume JSON
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)//  Não é obrigatório especificar que produz json porem para trabalhar com swager e necessário
     public Person update(@RequestBody Person person) { // Recebe o objeto person via body
         return service.update(person);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable(value = "id")Long id) {
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> delete(@PathVariable(value = "id")Long id) {
         service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
