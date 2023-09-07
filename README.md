@@ -24,4 +24,4 @@
 
 ### Integrating the API to the Database
 
-- Creating database, setting connection properties, inserting annotations that reference the entities in the database with @entity @colum and @repository, removing mocks and updating the create, update, delete and find methods to work together with the database,
+- Creating database, setting connection properties, inserting annotations that reference the entities in the database with @entity @colum and @repository, removing mocks and updating the create, update, delete and find methods to work together with the database, refactoring person controller
