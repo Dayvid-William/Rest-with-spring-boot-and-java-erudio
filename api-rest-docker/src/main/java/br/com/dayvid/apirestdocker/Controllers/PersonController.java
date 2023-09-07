@@ -22,7 +22,7 @@ public class PersonController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person findB1yId(@PathVariable(value = "id")Long id) {
+    public Person findById(@PathVariable(value = "id")Long id) {
         return service.findById(id);
     }
 
