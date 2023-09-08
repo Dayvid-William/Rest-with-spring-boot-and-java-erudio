@@ -16,7 +16,7 @@
 
 ## Understanding how Path parms work and exception handling
 
-- Learning to define application logic, validation methods, understanding annotations like @RestController @Requestmapping, @PathVariable and exception handling with @ControllerAdvice, @ReponseStatus and ExceptionHandle
+- Learning to define application logic, validation methods, understanding annotations like @RestController @Requestmapping, @PathVariable and exception handling with @ControllerAdvice, @ReponseStatus and ExceptionHandle.
 
 ### How to use is HTTP verbs (GET, POST, PUT AND DELETE)
 
@@ -24,10 +24,18 @@
 
 ### Integrating the API to the Database
 
-- Creating database, setting connection properties
+- Creating database, setting connection properties.
 
-- inserting annotations that reference the entities in the database with @entity @colum and @repository
+- inserting annotations that reference the entities in the database with @entity @colum and @repository.
 
-- removing mocks and updating the create, update, delete and find methods to work together with the database
+- removing mocks and updating the create, update, delete and find methods to work together with the database.
 
-- refactoring person controller
+- refactoring person controller.
+
+- Refactoring repository interface.
+
+### Object value design pattern
+
+- Add Dozzer mapper in the project.
+
+- Refactoring the project for using VO.

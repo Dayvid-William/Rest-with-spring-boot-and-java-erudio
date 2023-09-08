@@ -1,6 +1,6 @@
 package br.com.dayvid.apirestdocker.Controllers;
 
-import br.com.dayvid.apirestdocker.model.Person;
+import br.com.dayvid.apirestdocker.data.vo.v1.PersonVO;
 import br.com.dayvid.apirestdocker.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController //Funciona como @ResponseBody e @Controler cria uma map do model object e encontra uma viwer equivalente
-@RequestMapping("/person") // Todas as operações em person vai ser neste controller
+@RequestMapping("/person") // Todas as operações em personVO vai ser neste controller
 public class PersonController {
     //private PersonServices service = new PersonServices();
 
@@ -17,22 +17,22 @@ public class PersonController {
     private PersonServices service;
 
     @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Person> findAll() {
+    public List<PersonVO> findAll() {
         return service.findAll();
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person findById(@PathVariable(value = "id")Long id) {
+    public PersonVO findById(@PathVariable(value = "id")Long id) {
         return service.findById(id);
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)// Produz um JSON e consume JSON
-    public Person create(@RequestBody Person person) { // Recebe o objeto person via body
+    public PersonVO create(@RequestBody PersonVO person) { // Recebe o objeto personVO via body
         return service.create(person);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)//  Não é obrigatório especificar que produz json porem para trabalhar com swager e necessário
-    public Person update(@RequestBody Person person) { // Recebe o objeto person via body
+    public PersonVO update(@RequestBody PersonVO person) { // Recebe o objeto personVO via body
         return service.update(person);
     }
 
