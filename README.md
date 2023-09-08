@@ -38,4 +38,6 @@
 
 - Add Dozzer mapper in the project.
 
-- Refactoring the project for using VO.
+- Creating unit tests for test the Dozzer mapper.
+
+- Refactoring services to work with VO(value object) product
