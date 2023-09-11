@@ -4,6 +4,7 @@ import br.com.dayvid.apirestdocker.data.vo.v1.PersonVO;
 import br.com.dayvid.apirestdocker.data.vo.v2.PersonVOV2;
 import br.com.dayvid.apirestdocker.exceptions.ResourceNotFoundException;
 import br.com.dayvid.apirestdocker.mapper.DozerMapper;
+import br.com.dayvid.apirestdocker.mapper.custom.PersonMapper;
 import br.com.dayvid.apirestdocker.model.Person;
 import br.com.dayvid.apirestdocker.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ public class PersonServices {
 
     @Autowired //injeta o repository funciona como o server pois ambos são alias de @componety
     PersonRepository repository;
+    @Autowired
+    PersonMapper mapper;
     
     public List<PersonVO> findAll(){
         logger.info("Finding all people!");
@@ -48,9 +51,9 @@ public class PersonServices {
 
         logger.info("Creating one person with V2!");
 
-        var entity = DozerMapper.parseObject(person, Person.class);
+        var entity = mapper.convertVoToEntity(person);
 
-        var vo = DozerMapper.parseObject(repository.save(entity), PersonVOV2.class);
+        var vo = mapper.convertEntityToVo(repository.save(entity));
 
         return vo;
     }
