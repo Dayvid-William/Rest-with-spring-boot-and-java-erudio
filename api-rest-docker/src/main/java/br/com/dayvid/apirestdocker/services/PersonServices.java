@@ -1,6 +1,7 @@
 package br.com.dayvid.apirestdocker.services;
 
 import br.com.dayvid.apirestdocker.data.vo.v1.PersonVO;
+import br.com.dayvid.apirestdocker.data.vo.v2.PersonVOV2;
 import br.com.dayvid.apirestdocker.exceptions.ResourceNotFoundException;
 import br.com.dayvid.apirestdocker.mapper.DozerMapper;
 import br.com.dayvid.apirestdocker.model.Person;
@@ -39,6 +40,17 @@ public class PersonServices {
         var entity = DozerMapper.parseObject(person, Person.class);
 
         var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+
+        return vo;
+    }
+
+    public PersonVOV2 creatV2(PersonVOV2 person){
+
+        logger.info("Creating one person with V2!");
+
+        var entity = DozerMapper.parseObject(person, Person.class);
+
+        var vo = DozerMapper.parseObject(repository.save(entity), PersonVOV2.class);
 
         return vo;
     }
