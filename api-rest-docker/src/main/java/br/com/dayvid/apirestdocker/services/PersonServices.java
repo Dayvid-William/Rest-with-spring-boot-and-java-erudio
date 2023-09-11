@@ -47,7 +47,7 @@ public class PersonServices {
         return vo;
     }
 
-    public PersonVOV2 creatV2(PersonVOV2 person){
+    public PersonVOV2 createV2(PersonVOV2 person){
 
         logger.info("Creating one person with V2!");
 
