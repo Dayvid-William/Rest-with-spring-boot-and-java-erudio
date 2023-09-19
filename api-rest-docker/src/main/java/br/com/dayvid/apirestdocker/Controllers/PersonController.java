@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController //Funciona como @ResponseBody e @Controler cria uma map do model object e encontra uma viwer equivalente
-@RequestMapping("/person") // Todas as operações em personVO vai ser neste controller
+@RequestMapping("/api/person/v1") // Todas as operações em personVO vai ser neste controller
 public class PersonController {
     //private PersonServices service = new PersonServices();
 
