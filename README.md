@@ -41,3 +41,9 @@
 - Creating unit tests for test the Dozzer mapper.
 
 - Refactoring services to work with VO(value object) product
+
+### Adding support for migrations with flyway
+
+- Adding migrations to the project.
+
+- migrations with prompt and flyway.
