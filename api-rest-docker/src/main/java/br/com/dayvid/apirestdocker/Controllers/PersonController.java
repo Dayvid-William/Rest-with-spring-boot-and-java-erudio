@@ -16,22 +16,24 @@ public class PersonController {
     @Autowired // O spring boot fica responsável pela instanciação do objeto de forma dinâmica (e preciso ter a anotação @Service ou outra que seja um Alias(ou seja, anotações injetadas) no objeto origem)
     private PersonServices service;
 
-    @GetMapping (produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping (produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<PersonVO> findAll() {
         return service.findAll();
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public PersonVO findById(@PathVariable(value = "id")Long id) {
         return service.findById(id);
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)// Produz um JSON e consume JSON
+    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})// Produz um JSON/XML e consume JSON/XML
     public PersonVO create(@RequestBody PersonVO person) { // Recebe o objeto personVO via body
         return service.create(person);
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)//  Não é obrigatório especificar que produz json porem para trabalhar com swager e necessário
+    @PutMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})//  Não é obrigatório especificar que produz json porem para trabalhar com swager e necessário
     public PersonVO update(@RequestBody PersonVO person) { // Recebe o objeto personVO via body
         return service.update(person);
     }

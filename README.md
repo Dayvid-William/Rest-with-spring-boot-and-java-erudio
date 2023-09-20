@@ -47,3 +47,9 @@
 - Adding migrations to the project.
 
 - migrations with prompt and flyway.
+
+### Content Negotiation
+
+- Implementing Content Negotiation via QUERY Parameter.
+
+- 
