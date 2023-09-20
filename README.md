@@ -47,3 +47,7 @@
 - Adding migrations to the project.
 
 - migrations with prompt and flyway.
+
+### Custom JSON Serialization
+
+- learning Json customization annotations.

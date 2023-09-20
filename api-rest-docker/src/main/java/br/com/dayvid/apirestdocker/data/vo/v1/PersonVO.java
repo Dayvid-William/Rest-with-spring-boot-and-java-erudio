@@ -1,26 +1,26 @@
 package br.com.dayvid.apirestdocker.data.vo.v1;
 
-import jakarta.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
+@JsonPropertyOrder({"id", "address", "first_Name", "last_Name", "gender"})// define a order do json gerado
 public class PersonVO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     private Long id;
-
+    @JsonProperty("first_name")// define como o nome do atributo sera apresentado
     private String firstName;
-
+    @JsonProperty("last_name")
     private String lastName;
-
     private String address;
-
+    @JsonIgnore//ignora a propriedade  
     private String gender;
-
     public PersonVO() {}
 
     public Long getId() {
