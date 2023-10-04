@@ -63,3 +63,5 @@
 - Converting the mapper to use the VO's key attribute as the model id.
 
 - Implementing HATEOAS in API operations.
+
+- Using Mockito for testing
