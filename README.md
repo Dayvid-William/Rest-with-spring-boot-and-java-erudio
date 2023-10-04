@@ -50,8 +50,8 @@
 
 ### Content Negotiation
 
-- Implementing Content Negotiation via QUERY Parameter.
+- Implementing Content Negotiation with QUERY Parameter.
 
-- Implementing Content Negotiation via HEADER Parameter.
+- Implementing Content Negotiation with HEADER Parameter.
 
-- 
+- Serialize in YML.
