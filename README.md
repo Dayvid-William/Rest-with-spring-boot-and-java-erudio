@@ -62,4 +62,4 @@
 
 - Converting the mapper to use the VO's key attribute as the model id.
 
-- implementing HATEOAS in API operations
+- Implementing HATEOAS in API operations.
