@@ -47,3 +47,11 @@
 - Adding migrations to the project.
 
 - migrations with prompt and flyway.
+
+### Content Negotiation
+
+- Implementing Content Negotiation with QUERY Parameter.
+
+- Implementing Content Negotiation with HEADER Parameter.
+
+- Serialize in YML.
