@@ -1,34 +1,32 @@
 package br.com.dayvid.apirestdocker.data.vo.v1;
 
-import jakarta.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.dozermapper.core.Mapping;
+import org.springframework.hateoas.RepresentationModel;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class PersonVO implements Serializable {
+public class PersonVO extends RepresentationModel<PersonVO> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private Long id;
-
+    @JsonProperty("id")
+    @Mapping("id")//diz o nome que corresponde no model
+    private Long Key;
     private String firstName;
-
     private String lastName;
-
     private String address;
-
     private String gender;
-
     public PersonVO() {}
 
-    public Long getId() {
-        return id;
+    public Long getKey() {
+        return Key;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setKey(Long key) {
+        Key = key;
     }
 
     public String getFirstName() {
@@ -63,22 +61,25 @@ public class PersonVO implements Serializable {
         this.gender = gender;
     }
 
-
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
         PersonVO personVO = (PersonVO) o;
 
-        if (!Objects.equals(id, personVO.id)) return false;
+        if (!Objects.equals(Key, personVO.Key)) return false;
         if (!Objects.equals(firstName, personVO.firstName)) return false;
         if (!Objects.equals(lastName, personVO.lastName)) return false;
         if (!Objects.equals(address, personVO.address)) return false;
         return Objects.equals(gender, personVO.gender);
     }
 
+    @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = super.hashCode();
+        result = 31 * result + (Key != null ? Key.hashCode() : 0);
         result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);

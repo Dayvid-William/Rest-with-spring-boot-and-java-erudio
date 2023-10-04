@@ -1,11 +1,14 @@
 package br.com.dayvid.apirestdocker.services;
 
+import br.com.dayvid.apirestdocker.Controllers.PersonController;
 import br.com.dayvid.apirestdocker.data.vo.v1.PersonVO;
 import br.com.dayvid.apirestdocker.exceptions.ResourceNotFoundException;
 import br.com.dayvid.apirestdocker.mapper.DozerMapper;
 import br.com.dayvid.apirestdocker.model.Person;
 import br.com.dayvid.apirestdocker.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.logging.Logger;
@@ -29,7 +32,9 @@ public class PersonServices {
 
         var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No Records found for this ID!"));
-        return DozerMapper.parseObject(entity, PersonVO.class);
+        PersonVO vo = DozerMapper.parseObject(entity, PersonVO.class);
+        vo.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel()); //link o methodo findbyid do controler diretamente ao obj vo criado com auto relacionamento (cria endereço para ele mesmo)
+        return vo;
     }
 
     public PersonVO create(PersonVO person){
@@ -47,7 +52,7 @@ public class PersonServices {
 
         logger.info("Updating one person!");
 
-        var entity = repository.findById(person.getId())
+        var entity = repository.findById(person.getKey())
                 .orElseThrow(() -> new ResourceNotFoundException("No Records found for this ID!"));
 
         entity.setFirstName(person.getFirstName());
