@@ -1,9 +1,7 @@
 package br.com.dayvid.apirestdocker.unittests.mapper;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
-
 import br.com.dayvid.apirestdocker.data.vo.v1.PersonVO;
 import br.com.dayvid.apirestdocker.mapper.DozerMapper;
 import br.com.dayvid.apirestdocker.model.Person;
