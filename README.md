@@ -64,4 +64,4 @@
 
 - Implementing HATEOAS in API operations.
 
-- Using Mockito for testing
+- Using Mockito for testing with Junit5.
