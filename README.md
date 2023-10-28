@@ -67,3 +67,5 @@
 - Using Mockito for testing with Junit5.
 
 - Create test case for create and update with null object as parameter.
+
+- implementing test in the find all method using mock entity list.
