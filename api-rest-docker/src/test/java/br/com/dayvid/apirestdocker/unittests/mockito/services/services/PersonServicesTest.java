@@ -1,6 +1,7 @@
 package br.com.dayvid.apirestdocker.unittests.mockito.services.services;
 
 import br.com.dayvid.apirestdocker.data.vo.v1.PersonVO;
+import br.com.dayvid.apirestdocker.exceptions.RequiredObjectIsNullException;
 import br.com.dayvid.apirestdocker.model.Person;
 import br.com.dayvid.apirestdocker.repositories.PersonRepository;
 import br.com.dayvid.apirestdocker.services.PersonServices;
@@ -83,6 +84,18 @@ class PersonServicesTest {
     }
 
     @Test
+    void testCreateWithNullPerson() {
+        Exception exception = assertThrows(RequiredObjectIsNullException.class, () -> {
+            service.create(null);
+        });
+
+        String expectMessage = "It is not allowed to persist a null object";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectMessage));
+
+    }
+
+    @Test
     void testUpdate() {
         Person entity = input.mockEntity(1);
         entity.setId(1L);
@@ -105,6 +118,18 @@ class PersonServicesTest {
         assertEquals("First Name Test1",result.getFirstName());
         assertEquals("Last Name Test1",result.getLastName());
         assertEquals("Female",result.getGender());
+    }
+
+    @Test
+    void testUpdateWithNullPerson() {
+        Exception exception = assertThrows(RequiredObjectIsNullException.class, () -> {
+            service.update(null);
+        });
+
+        String expectMessage = "It is not allowed to persist a null object";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectMessage));
+
     }
 
     @Test
