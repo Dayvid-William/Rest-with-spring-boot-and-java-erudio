@@ -2,6 +2,7 @@ package br.com.dayvid.apirestdocker.services;
 
 import br.com.dayvid.apirestdocker.Controllers.PersonController;
 import br.com.dayvid.apirestdocker.data.vo.v1.PersonVO;
+import br.com.dayvid.apirestdocker.exceptions.RequiredObjectIsNullException;
 import br.com.dayvid.apirestdocker.exceptions.ResourceNotFoundException;
 import br.com.dayvid.apirestdocker.mapper.DozerMapper;
 import br.com.dayvid.apirestdocker.model.Person;
@@ -43,16 +44,19 @@ public class PersonServices {
 
     public PersonVO create(PersonVO person){
 
+        if(person == null) throw new RequiredObjectIsNullException();
+
         logger.info("Creating one person!");
 
         var entity = DozerMapper.parseObject(person, Person.class);
-
         var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
         vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel()); //link o methodo findbyid do controler diretamente ao obj vo criado com auto relacionamento (cria endereço para ele mesmo)
         return vo;
     }
 
     public PersonVO update(PersonVO person){
+
+        if(person == null) throw new RequiredObjectIsNullException();
 
         logger.info("Updating one person!");
 
