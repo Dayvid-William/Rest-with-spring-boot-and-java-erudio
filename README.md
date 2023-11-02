@@ -26,11 +26,11 @@
 
 - Creating database, setting connection properties.
 
-- inserting annotations that reference the entities in the database with @entity @colum and @repository.
+- Inserting annotations that reference the entities in the database with @entity @colum and @repository.
 
-- removing mocks and updating the create, update, delete and find methods to work together with the database.
+- Removing mocks and updating the create, update, delete and find methods to work together with the database.
 
-- refactoring person controller.
+- Refactoring person controller.
 
 - Refactoring repository interface.
 
@@ -46,7 +46,7 @@
 
 - Adding migrations to the project.
 
-- migrations with prompt and flyway.
+- Migrations with prompt and flyway.
 
 ### Content Negotiation
 
@@ -56,7 +56,7 @@
 
 - Serialize in YML.
 
-### implementing HATEOAS
+### Implementing HATEOAS
 
 - Adding Represetation model.
 
@@ -69,3 +69,9 @@
 - Create test case for create and update with null object as parameter.
 
 - implementing test in the find all method using mock entity list.
+
+### Adding Swager Support
+
+- Swager is a farmwork with support for most existing programming languages, it helps developers define, create, document and consume RESTFull services
+
+- Adding Swager in application.
