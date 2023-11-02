@@ -15,7 +15,7 @@ public class PersonVO extends RepresentationModel<PersonVO> implements Serializa
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("id")
-    @Mapping("id")//diz o nome que corresponde no model
+    @Mapping("id")//diz o nome que referencia nmo model no model
     private Long Key;
     private String firstName;
     private String lastName;
