@@ -75,3 +75,5 @@
 - Swager is a farmwork with support for most existing programming languages, it helps developers define, create, document and consume RESTFull services
 
 - Adding Swager in application.
+
+- Defining basic Swager settings.
