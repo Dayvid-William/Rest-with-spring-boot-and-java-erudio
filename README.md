@@ -70,10 +70,10 @@
 
 - implementing test in the find all method using mock entity list.
 
-### Adding Swager Support
+### Adding Swagger Support
 
-- Swager is a farmwork with support for most existing programming languages, it helps developers define, create, document and consume RESTFull services
+- Swagger is a farmwork with support for most existing programming languages, it helps developers define, create, document and consume RESTFull services
 
-- Adding Swager in application.
+- Adding Swagger in application.
 
-- Defining basic Swager settings.
+- Defining basic Swagger settings.
