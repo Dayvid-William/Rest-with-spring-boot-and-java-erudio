@@ -1,4 +1,4 @@
-package br.com.dayvid.apirestdocker.config;
+package br.com.dayvid.apirestdocker.data.vo.v1.config;
 
 import br.com.dayvid.apirestdocker.serialization.converter.YamlJackson2HttpMesageConverter;
 import org.springframework.context.annotation.Configuration;
