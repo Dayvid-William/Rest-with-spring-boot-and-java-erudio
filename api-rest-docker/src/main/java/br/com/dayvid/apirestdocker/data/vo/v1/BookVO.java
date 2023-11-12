@@ -19,13 +19,10 @@ public class BookVO extends RepresentationModel<BookVO> implements Serializable 
     @JsonProperty("id")
     @Mapping("id")
     private Long key;
-
     private String author;
-
+    @JsonProperty("launch_date")
     private Date launchDate;
-
     private Double price;
-
     private String title;
 
     public Long getKey() {
