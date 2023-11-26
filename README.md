@@ -77,3 +77,7 @@
 - Adding Swagger in application.
 
 - Defining basic Swagger settings.
+
+- Completing challenge to create new model, VO, services, repositories and controls for new book entity.
+
+- Creating tests and mocks for new entity Book.
