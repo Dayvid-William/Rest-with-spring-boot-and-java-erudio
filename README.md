@@ -84,4 +84,6 @@
 
 - Configure test containers.
 
-- Implementing intregation tests for swagger page.
+- Implementing intregation test for swagger page.
+
+- mporting collection into postman through swagger.
