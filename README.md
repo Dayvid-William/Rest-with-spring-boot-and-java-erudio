@@ -87,3 +87,9 @@
 - Implementing intregation test for swagger page.
 
 - mporting collection into postman through swagger.
+
+### Config CORS
+
+- Enabling CORS in the controller in one or more different origins.
+
+- Configuring CORS globally.
