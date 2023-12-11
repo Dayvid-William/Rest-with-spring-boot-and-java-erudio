@@ -45,7 +45,7 @@ public class PersonController {
         return service.findAll();
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    //@CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_YML, MediaType.APPLICATION_XML })
     @Operation(summary = "Finds a Person", description = "Finds a Person",
             tags = {"People"},
@@ -64,7 +64,7 @@ public class PersonController {
         return service.findById(id);
     }
 
-    @CrossOrigin(origins = {"http://localhost:8080", "https://erudio.com.br"})
+    //@CrossOrigin(origins = {"http://localhost:8080", "https://erudio.com.br"})
     @PostMapping(produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_YML, MediaType.APPLICATION_XML },
             consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_YML, MediaType.APPLICATION_XML })// Produz um JSON/XML e consume JSON/XML
     @Operation(summary = "Adds a new Person", description = "Adds a new Person by passing in a JSON, XML or YML representation of the person!",

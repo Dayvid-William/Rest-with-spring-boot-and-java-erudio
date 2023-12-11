@@ -93,3 +93,5 @@
 - Enabling CORS in the controller in one or more different origins.
 
 - Configuring CORS globally.
+
+- Creating integration test.
