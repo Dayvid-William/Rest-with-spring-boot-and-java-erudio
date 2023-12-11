@@ -41,7 +41,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 		mockPerson();
 
 		specification = new RequestSpecBuilder()
-				.addHeader(TestConfigs.HEADER_PARAM_ORIGIM, "https://erudio.com.br")
+				.addHeader(TestConfigs.HEADER_PARAM_ORIGIM, TestConfigs.ORIGIN_ERUDIO)
 				.setBasePath("/api/person/v1")
 				.setPort(TestConfigs.SERVER_PORT)
 					.addFilter(new RequestLoggingFilter(LogDetail.ALL))
@@ -59,23 +59,123 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 					.body()
 						.asString();
 
-		PersonVO createdPerson = objectMapper.readValue(content, PersonVO.class);
-		person = createdPerson;
+		PersonVO persitedPerson = objectMapper.readValue(content, PersonVO.class);
+		person = persitedPerson;
 
-		assertNotNull(createdPerson);
+		assertNotNull(persitedPerson);
 
-		assertNotNull(createdPerson.getId());
-		assertNotNull(createdPerson.getFirstName());
-		assertNotNull(createdPerson.getLastName());
-		assertNotNull(createdPerson.getAddress());
-		assertNotNull(createdPerson.getGender());
+		assertNotNull(persitedPerson.getId());
+		assertNotNull(persitedPerson.getFirstName());
+		assertNotNull(persitedPerson.getLastName());
+		assertNotNull(persitedPerson.getAddress());
+		assertNotNull(persitedPerson.getGender());
 
-		assertTrue(createdPerson.getId() > 0);
+		assertTrue(persitedPerson.getId() > 0);
 
-		assertEquals("Richard", createdPerson.getFirstName());
-		assertEquals("Stallman", createdPerson.getLastName());
-		assertEquals("New York City, New York, US", createdPerson.getAddress());
-		assertEquals("Male", createdPerson.getGender());
+		assertEquals("Richard", persitedPerson.getFirstName());
+		assertEquals("Stallman", persitedPerson.getLastName());
+		assertEquals("New York City, New York, US", persitedPerson.getAddress());
+		assertEquals("Male", persitedPerson.getGender());
+	}
+
+	@Test
+	@Order(2)
+	public void testCreateWithWrongOrigin() throws JsonProcessingException {
+		mockPerson();
+
+		specification = new RequestSpecBuilder()
+				.addHeader(TestConfigs.HEADER_PARAM_ORIGIM, TestConfigs.ORIGIN_SEMERU)
+				.setBasePath("/api/person/v1")
+				.setPort(TestConfigs.SERVER_PORT)
+					.addFilter(new RequestLoggingFilter(LogDetail.ALL))
+					.addFilter(new ResponseLoggingFilter(LogDetail.ALL))
+				.build();
+
+		var content = given().spec(specification)
+				.contentType(TestConfigs.CONTENT_TYPE_JSON)
+					.body(person)
+					.when()
+					.post()
+				.then()
+					.statusCode(403)
+						.extract()
+							.body()
+								.asString();
+
+		assertNotNull(content);
+
+		assertEquals("Invalid CORS request", content);
+	}
+
+	@Test
+	@Order(3)
+	public void testFindById() throws JsonProcessingException {
+		mockPerson();
+
+		specification = new RequestSpecBuilder()
+				.addHeader(TestConfigs.HEADER_PARAM_ORIGIM, TestConfigs.ORIGIN_ERUDIO)
+				.setBasePath("/api/person/v1")
+				.setPort(TestConfigs.SERVER_PORT)
+				.addFilter(new RequestLoggingFilter(LogDetail.ALL))
+				.addFilter(new ResponseLoggingFilter(LogDetail.ALL))
+				.build();
+
+		var content = given().spec(specification)
+				.contentType(TestConfigs.CONTENT_TYPE_JSON)
+					.pathParam("id", person.getId())
+					.when()
+					.get("{id}")
+				.then()
+					.statusCode(200)
+						.extract()
+						.body()
+							.asString();
+
+		PersonVO persitedPerson = objectMapper.readValue(content, PersonVO.class);
+		person = persitedPerson;
+
+		assertNotNull(persitedPerson);
+
+		assertNotNull(persitedPerson.getId());
+		assertNotNull(persitedPerson.getFirstName());
+		assertNotNull(persitedPerson.getLastName());
+		assertNotNull(persitedPerson.getAddress());
+		assertNotNull(persitedPerson.getGender());
+
+		assertTrue(persitedPerson.getId() > 0);
+
+		assertEquals("Richard", persitedPerson.getFirstName());
+		assertEquals("Stallman", persitedPerson.getLastName());
+		assertEquals("New York City, New York, US", persitedPerson.getAddress());
+		assertEquals("Male", persitedPerson.getGender());
+	}
+
+	@Test
+	@Order(4)
+	public void testFindByIdWithWrongOrigin() throws JsonProcessingException {
+		mockPerson();
+
+		specification = new RequestSpecBuilder()
+				.addHeader(TestConfigs.HEADER_PARAM_ORIGIM, TestConfigs.ORIGIN_SEMERU)
+				.setBasePath("/api/person/v1")
+				.setPort(TestConfigs.SERVER_PORT)
+				.addFilter(new RequestLoggingFilter(LogDetail.ALL))
+				.addFilter(new ResponseLoggingFilter(LogDetail.ALL))
+				.build();
+
+		var content = given().spec(specification)
+				.contentType(TestConfigs.CONTENT_TYPE_JSON)
+					.pathParam("id", person.getId())
+					.when()
+					.get("{id}")
+				.then()
+					.statusCode(403)
+						.extract()
+						.body()
+							.asString();
+
+		assertNotNull(content);
+		assertEquals("Invalid CORS request", content);
 	}
 
 	private void mockPerson() {
