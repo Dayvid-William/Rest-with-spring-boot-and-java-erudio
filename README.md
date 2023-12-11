@@ -95,3 +95,7 @@
 - Configuring CORS globally.
 
 - Creating integration test.
+
+### Authentication With JWT and Spring Security
+
+- 
