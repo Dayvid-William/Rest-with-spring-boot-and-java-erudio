@@ -95,3 +95,9 @@
 - Configuring CORS globally.
 
 - Creating integration test.
+
+### Authentication With JWT and Spring Security
+
+- Adding migrations for table creation and populating permission, user and user permission.
+
+-
