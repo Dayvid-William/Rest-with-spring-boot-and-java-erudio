@@ -100,4 +100,16 @@
 
 - Adding migrations for table creation and populating permission, user and user permission.
 
--
+- Creating a model with table permission and user with join table.
+
+- Creating a repository fort users.
+
+- Creting user services.
+
+- Understanding the usage to anotations @ManyToMany @JoinTable and Query.
+
+- Understanding how to use JPQL language to manipulate objects that represent entities in the database.
+
+- Creting handles and excptions for authentication.
+
+- Creating VOs for tocken.
