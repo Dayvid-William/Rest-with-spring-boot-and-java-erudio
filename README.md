@@ -113,3 +113,11 @@
 - Creting handles and excptions for authentication.
 
 - Creating VOs for tocken.
+
+- Creating token and defining refresh token.
+
+- Defining token algorithm.
+
+- Creating method for resolve token.
+
+- Creating method for validate token.
