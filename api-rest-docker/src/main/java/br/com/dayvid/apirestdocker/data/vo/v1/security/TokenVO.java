@@ -1,10 +1,11 @@
 package br.com.dayvid.apirestdocker.data.vo.v1.security;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class TokenVO implements Serializable {
+public class TokenVO implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
@@ -12,17 +13,23 @@ public class TokenVO implements Serializable {
     private Boolean authenticated;
     private Date created;
     private Date expiration;
-    private String acessToken;
+    private String accessToken;
     private String refreshToken;
 
     public TokenVO() {}
 
-    public TokenVO(String username, Boolean authenticated, Date created, Date expiration, String acessToken, String refreshToken) {
+    public TokenVO(
+            String username,
+            Boolean authenticated,
+            Date created,
+            Date expiration,
+            String accessToken,
+            String refreshToken) {
         this.username = username;
         this.authenticated = authenticated;
         this.created = created;
         this.expiration = expiration;
-        this.acessToken = acessToken;
+        this.accessToken = accessToken;
         this.refreshToken = refreshToken;
     }
 
@@ -58,12 +65,12 @@ public class TokenVO implements Serializable {
         this.expiration = expiration;
     }
 
-    public String getAcessToken() {
-        return acessToken;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setAcessToken(String acessToken) {
-        this.acessToken = acessToken;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
     public String getRefreshToken() {
@@ -86,7 +93,7 @@ public class TokenVO implements Serializable {
             return false;
         if (!Objects.equals(created, tokenVO.created)) return false;
         if (!Objects.equals(expiration, tokenVO.expiration)) return false;
-        if (!Objects.equals(acessToken, tokenVO.acessToken)) return false;
+        if (!Objects.equals(accessToken, tokenVO.accessToken)) return false;
         return Objects.equals(refreshToken, tokenVO.refreshToken);
     }
 
@@ -96,7 +103,7 @@ public class TokenVO implements Serializable {
         result = 31 * result + (authenticated != null ? authenticated.hashCode() : 0);
         result = 31 * result + (created != null ? created.hashCode() : 0);
         result = 31 * result + (expiration != null ? expiration.hashCode() : 0);
-        result = 31 * result + (acessToken != null ? acessToken.hashCode() : 0);
+        result = 31 * result + (accessToken != null ? accessToken.hashCode() : 0);
         result = 31 * result + (refreshToken != null ? refreshToken.hashCode() : 0);
         return result;
     }

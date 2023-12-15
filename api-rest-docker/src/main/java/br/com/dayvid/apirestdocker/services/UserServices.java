@@ -8,27 +8,26 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import java.util.logging.Logger;
 
-@Service //Serve para o spring boot veja esse como objeto que sera injetado em run time em outras classes da aplicação
+@Service
 public class UserServices implements UserDetailsService {
+
     private Logger logger = Logger.getLogger(UserServices.class.getName());
 
-    @Autowired //injeta via propriedade
+    @Autowired
     UserRepository repository;
 
-    public UserServices(UserRepository repository) { //quando se injeta pelo construtor significa que esse atributo e required
+    public UserServices(UserRepository repository) {
         this.repository = repository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        logger.info("Finding one user by name!" + username + "!");
+        logger.info("Finding one user by name " + username + "!");
         var user = repository.findByUsername(username);
         if (user != null) {
             return user;
         } else {
             throw new UsernameNotFoundException("Username " + username + " not found!");
         }
-
     }
 }
