@@ -121,3 +121,7 @@
 - Creating method for resolve token.
 
 - Creating method for validate token.
+
+- Creating method JwtTokenFilter and JwtConfigurer
+
+- Implementing Security Config.
