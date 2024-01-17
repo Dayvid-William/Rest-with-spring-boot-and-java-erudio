@@ -3,14 +3,14 @@ package br.com.dayvid.apirestdocker.data.vo.v1.security;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class AccountCredentionVO implements Serializable {
+public class AccountCredentialsVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private String username;
     private String password;
 
-    public AccountCredentionVO(String username, String password) {
+    public AccountCredentialsVO(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -36,7 +36,7 @@ public class AccountCredentionVO implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AccountCredentionVO that = (AccountCredentionVO) o;
+        AccountCredentialsVO that = (AccountCredentialsVO) o;
 
         if (!Objects.equals(username, that.username)) return false;
         return Objects.equals(password, that.password);

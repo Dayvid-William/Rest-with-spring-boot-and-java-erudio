@@ -77,12 +77,12 @@ public class JwtTokenProvider {
 
     private String getRefreshToken(String username, List<String> roles, Date now) {
         Date validityRefreshToken = new Date(now.getTime() + (validityInMilliseconds * 3));
-        return JWT.create()// Cria o token
-                .withClaim("roles", roles) // seta as roles
-                .withIssuedAt(now) // armazena a data de criação do token
-                .withExpiresAt(validityRefreshToken) // seta uma validade no token a parti da data de criação
-                .withSubject(username) // usuario que está usando o toklen
-                .sign(algorithm) // algoritimo que implementa no token no caso HMAC256
+        return JWT.create()
+                .withClaim("roles", roles)
+                .withIssuedAt(now)
+                .withExpiresAt(validityRefreshToken)
+                .withSubject(username)
+                .sign(algorithm)
                 .strip();
     }
 
@@ -103,7 +103,7 @@ public class JwtTokenProvider {
     public String resolveToken(HttpServletRequest req) {
         String bearerToken = req.getHeader("Authorization");
 
-        // Receben o token no formato (bearer + token) devemos eliminar o bearer e trabalhar apenas com o token
+        // Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZWFuZHJvIiwicm9sZXMiOlsiQURNSU4iLCJNQU5BR0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImV4cCI6MTY1MjcxOTUzOCwiaWF0IjoxNjUyNzE1OTM4fQ.muu8eStsRobqLyrFYLHRiEvOSHAcss4ohSNtmwWTRcY
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring("Bearer ".length());
         }
