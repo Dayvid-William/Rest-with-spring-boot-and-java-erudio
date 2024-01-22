@@ -1,10 +1,11 @@
 package br.com.dayvid.apirestdocker.data.vo.v1.security;
 
+import java.io.Serial;
 import java.io.Serializable;
-import java.util.Objects;
 
-public class AccountCredentialsVO implements Serializable {
+public class AccountCredentialsVO implements Serializable{
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private String username;
@@ -32,20 +33,33 @@ public class AccountCredentialsVO implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        AccountCredentialsVO that = (AccountCredentialsVO) o;
-
-        if (!Objects.equals(username, that.username)) return false;
-        return Objects.equals(password, that.password);
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((password == null) ? 0 : password.hashCode());
+        result = prime * result + ((username == null) ? 0 : username.hashCode());
+        return result;
     }
 
     @Override
-    public int hashCode() {
-        int result = username != null ? username.hashCode() : 0;
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        return result;
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AccountCredentialsVO other = (AccountCredentialsVO) obj;
+        if (password == null) {
+            if (other.password != null)
+                return false;
+        } else if (!password.equals(other.password))
+            return false;
+        if (username == null) {
+            if (other.username != null)
+                return false;
+        } else if (!username.equals(other.username))
+            return false;
+        return true;
     }
 }

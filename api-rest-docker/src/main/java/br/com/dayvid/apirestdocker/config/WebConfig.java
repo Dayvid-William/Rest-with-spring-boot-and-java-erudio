@@ -10,8 +10,8 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.List;
 
-@Configuration // Diz ao spring boot que ele precisa ler essa classe ao iniciar como uma classe de configurações sobre a aplicação
-public class WebConfig implements WebMvcConfigurer {
+@Configuration
+public class WebConfig implements WebMvcConfigurer{
 
     private static final MediaType MEDIA_TYPE_APPLICATION_YML = MediaType.valueOf("application/x-yaml");
 
@@ -27,8 +27,8 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         var allowedOrigins = corsOriginPatterns.split(",");
         registry.addMapping("/**")
-                //.allowedMethods("GET", "POST", "PUT") para permitir apenas em alguns verbos
-                .allowedMethods("*") // Para permitir todos os verbos e methodos
+                //.allowedMethods("GET", "POST", "PUT")
+                .allowedMethods("*")
                 .allowedOrigins(allowedOrigins)
                 .allowCredentials(true);
     }
@@ -54,9 +54,10 @@ public class WebConfig implements WebMvcConfigurer {
                 .ignoreAcceptHeader(false)
                 .useRegisteredExtensionsOnly(false)
                 .defaultContentType(MediaType.APPLICATION_JSON)
-                    .mediaType("Json", MediaType.APPLICATION_JSON)
-                    .mediaType("xml", MediaType.APPLICATION_XML)
-                    .mediaType("x-yaml", MEDIA_TYPE_APPLICATION_YML);
+                .mediaType("json", MediaType.APPLICATION_JSON)
+                .mediaType("xml", MediaType.APPLICATION_XML)
+                .mediaType("x-yaml", MEDIA_TYPE_APPLICATION_YML)
+        ;
     }
 
 }
