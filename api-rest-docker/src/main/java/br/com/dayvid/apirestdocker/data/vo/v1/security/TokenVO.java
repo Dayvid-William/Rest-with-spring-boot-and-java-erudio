@@ -3,10 +3,10 @@ package br.com.dayvid.apirestdocker.data.vo.v1.security;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 public class TokenVO implements Serializable{
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private String username;
@@ -82,29 +82,57 @@ public class TokenVO implements Serializable{
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TokenVO tokenVO = (TokenVO) o;
-
-        if (!Objects.equals(username, tokenVO.username)) return false;
-        if (!Objects.equals(authenticated, tokenVO.authenticated))
-            return false;
-        if (!Objects.equals(created, tokenVO.created)) return false;
-        if (!Objects.equals(expiration, tokenVO.expiration)) return false;
-        if (!Objects.equals(accessToken, tokenVO.accessToken)) return false;
-        return Objects.equals(refreshToken, tokenVO.refreshToken);
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((accessToken == null) ? 0 : accessToken.hashCode());
+        result = prime * result + ((authenticated == null) ? 0 : authenticated.hashCode());
+        result = prime * result + ((created == null) ? 0 : created.hashCode());
+        result = prime * result + ((expiration == null) ? 0 : expiration.hashCode());
+        result = prime * result + ((refreshToken == null) ? 0 : refreshToken.hashCode());
+        result = prime * result + ((username == null) ? 0 : username.hashCode());
+        return result;
     }
 
     @Override
-    public int hashCode() {
-        int result = username != null ? username.hashCode() : 0;
-        result = 31 * result + (authenticated != null ? authenticated.hashCode() : 0);
-        result = 31 * result + (created != null ? created.hashCode() : 0);
-        result = 31 * result + (expiration != null ? expiration.hashCode() : 0);
-        result = 31 * result + (accessToken != null ? accessToken.hashCode() : 0);
-        result = 31 * result + (refreshToken != null ? refreshToken.hashCode() : 0);
-        return result;
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        TokenVO other = (TokenVO) obj;
+        if (accessToken == null) {
+            if (other.accessToken != null)
+                return false;
+        } else if (!accessToken.equals(other.accessToken))
+            return false;
+        if (authenticated == null) {
+            if (other.authenticated != null)
+                return false;
+        } else if (!authenticated.equals(other.authenticated))
+            return false;
+        if (created == null) {
+            if (other.created != null)
+                return false;
+        } else if (!created.equals(other.created))
+            return false;
+        if (expiration == null) {
+            if (other.expiration != null)
+                return false;
+        } else if (!expiration.equals(other.expiration))
+            return false;
+        if (refreshToken == null) {
+            if (other.refreshToken != null)
+                return false;
+        } else if (!refreshToken.equals(other.refreshToken))
+            return false;
+        if (username == null) {
+            if (other.username != null)
+                return false;
+        } else if (!username.equals(other.username))
+            return false;
+        return true;
     }
 }

@@ -9,17 +9,20 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfig {
 
-    @Bean //Faz com que a instancia retornada pelo metodo se torne um objeto gerenciado pelo spring
-    public OpenAPI customOpenAPI() {
+    @Bean
+    OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("RESTful API with java 20 and spring boot 3.1.2")
+                        .title("REST API's RESTful from 0 to AWS  with Java 21,  Spring Boot 3.2.0 and Docker")
                         .version("v1")
-                        .description("Some description about you API")
-                        .termsOfService("https://\637b8cd0bd894450460dd0a0--adorable-sable-425b3d.netlify.app")
+                        .description("Some description about your API")
+                        .termsOfService("https://pub.erudio.com.br/meus-cursos")
                         .license(
                                 new License()
                                         .name("Apache 2.0")
-                                        .url("")));
+                                        .url("https://pub.erudio.com.br/meus-cursos")
+                        )
+                );
     }
+
 }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     @Autowired
-    public AuthServices authServices;
+    AuthServices authServices;
 
     @SuppressWarnings("rawtypes")
     @Operation(summary = "Authenticates a user and returns a token")
