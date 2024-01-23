@@ -129,3 +129,7 @@
 - Learning how to generate encrypted password
 
 - Defining parameters for use in postman
+
+### Securing Api With Rest Assured Test Container And JUnit5
+
+- Fixing broken tests and adding token and accont credentials VO.
