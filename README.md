@@ -125,3 +125,7 @@
 - Creating method JwtTokenFilter and JwtConfigurer
 
 - Implementing Security Config.
+
+- Learning how to generate encrypted password
+
+- Defining parameters for use in postman
