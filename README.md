@@ -133,3 +133,5 @@
 ### Securing Api With Rest Assured Test Container And JUnit5
 
 - Fixing broken tests and adding token and accont credentials VO.
+
+- Creating AuthControllerTests
