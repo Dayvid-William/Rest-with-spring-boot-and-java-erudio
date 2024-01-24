@@ -1,8 +1,14 @@
 package br.com.dayvid.apirestdocker.integrationtests.vo;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import javax.xml.bind.annotation.XmlElement;
 import java.io.Serial;
 import java.io.Serializable;
 
+
+@XmlRootElement
 public class AccountCredentialsVO implements Serializable{
 
     @Serial
@@ -10,6 +16,9 @@ public class AccountCredentialsVO implements Serializable{
 
     private String username;
     private String password;
+
+    public AccountCredentialsVO() {
+    }
 
     public AccountCredentialsVO(String username, String password) {
         this.username = username;

@@ -134,4 +134,9 @@
 
 - Fixing broken tests and adding token and accont credentials VO.
 
-- Creating AuthControllerTests
+- Creating AuthControllerTests With Json
+
+- Creating AuthControllerTests With Xml
+
+- Creating AuthControllerTests With Yaml
+
