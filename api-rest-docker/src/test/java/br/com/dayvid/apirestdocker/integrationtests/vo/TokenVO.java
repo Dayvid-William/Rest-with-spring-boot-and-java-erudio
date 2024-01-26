@@ -1,9 +1,12 @@
 package br.com.dayvid.apirestdocker.integrationtests.vo;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
+@XmlRootElement
 public class TokenVO implements Serializable{
 
     @Serial
