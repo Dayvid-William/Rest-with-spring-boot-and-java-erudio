@@ -40,7 +40,7 @@
 
 - Creating unit tests for test the Dozzer mapper.
 
-- Refactoring services to work with VO(value object) product
+- Refactoring services to work with VO(value object) product.
 
 ### Adding support for migrations with flyway
 
@@ -72,7 +72,7 @@
 
 ### Adding Swagger Support
 
-- Swagger is a farmwork with support for most existing programming languages, it helps developers define, create, document and consume RESTFull services
+- Swagger is a farmwork with support for most existing programming languages, it helps developers define, create, document and consume RESTFull services.
 
 - Adding Swagger in application.
 
@@ -122,21 +122,22 @@
 
 - Creating method for validate token.
 
-- Creating method JwtTokenFilter and JwtConfigurer
+- Creating method JwtTokenFilter and JwtConfigurer.
 
 - Implementing Security Config.
 
-- Learning how to generate encrypted password
+- Learning how to generate encrypted password.
 
-- Defining parameters for use in postman
+- Defining parameters for use in postman.
 
 ### Securing Api With Rest Assured Test Container And JUnit5
 
 - Fixing broken tests and adding token and accont credentials VO.
 
-- Creating AuthControllerTests With Json
+- Creating AuthControllerTests With Json.
 
-- Creating AuthControllerTests With Xml
+- Creating AuthControllerTests With Xml.
 
-- Creating AuthControllerTests With Yaml
+- Creating custom YMLMapper.
 
+- Creating AuthControllerTests With Yaml.
