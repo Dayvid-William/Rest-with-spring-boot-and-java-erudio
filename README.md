@@ -141,3 +141,7 @@
 - Creating custom YMLMapper.
 
 - Creating AuthControllerTests With Yaml.
+
+- Separating cors tests from authentication and controller tests
+
+- Creating PersonControllerJsonTest
