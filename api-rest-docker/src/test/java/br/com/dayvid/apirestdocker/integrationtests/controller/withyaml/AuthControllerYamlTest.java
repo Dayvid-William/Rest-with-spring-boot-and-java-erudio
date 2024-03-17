@@ -1,7 +1,7 @@
 package br.com.dayvid.apirestdocker.integrationtests.controller.withyaml;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import br.com.dayvid.apirestdocker.configs.TestConfigs;
 import br.com.dayvid.apirestdocker.integrationtests.controller.withyaml.mapper.YMLMapper;

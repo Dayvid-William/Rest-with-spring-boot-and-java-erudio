@@ -74,14 +74,14 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 
 		var content = given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_JSON)
-					.body(person)
+				.body(person)
 					.when()
-					.post()
-				.then()
-					.statusCode(200)
-					.extract()
-					.body()
-						.asString();
+				.post()
+					.then()
+						.statusCode(200)
+						.extract()
+						.body()
+							.asString();
 
 		PersonVO persitedPerson = objectMapper.readValue(content, PersonVO.class);
 		person = persitedPerson;
@@ -110,13 +110,13 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 		var content = given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_JSON)
 				.body(person)
-				.when()
+					.when()
 				.post()
-				.then()
-				.statusCode(200)
-				.extract()
-				.body()
-				.asString();
+					.then()
+						.statusCode(200)
+						.extract()
+						.body()
+							.asString();
 
 		PersonVO persitedPerson = objectMapper.readValue(content, PersonVO.class);
 		person = persitedPerson;

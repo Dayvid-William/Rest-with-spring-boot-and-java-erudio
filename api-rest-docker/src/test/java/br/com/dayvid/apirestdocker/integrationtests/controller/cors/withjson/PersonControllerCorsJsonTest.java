@@ -54,11 +54,15 @@ public class PersonControllerCorsJsonTest extends AbstractIntegrationTest {
 						.statusCode(200)
 							.extract()
 							.body()
-								.as(TokenVO.class) //Só pode ser salvo, pois, tem todos os atributos iguais o da aplicação se não deveria ser salvo como String.
-							.getAccessToken();
+								.asString();
+
+		TokenVO token = objectMapper.readValue(accessToken, TokenVO.class);
+
+		assertNotNull(token);
+		assertNotNull(token.getAccessToken());
 
 		specification = new RequestSpecBuilder()
-				.addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + accessToken)
+				.addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + token.getAccessToken())
 				.setBasePath("/api/person/v1")
 				.setPort(TestConfigs.SERVER_PORT)
 				.addFilter(new RequestLoggingFilter(LogDetail.ALL))

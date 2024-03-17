@@ -53,4 +53,6 @@ public class YMLMapper implements ObjectMapper{
         return null;
     }
 
+    public void disable(DeserializationFeature failOnUnknownProperties) {
+    }
 }

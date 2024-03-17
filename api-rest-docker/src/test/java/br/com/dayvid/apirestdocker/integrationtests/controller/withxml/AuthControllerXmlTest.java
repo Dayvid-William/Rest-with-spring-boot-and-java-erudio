@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.shaded.com.fasterxml.jackson.core.JsonProcessingException;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.JsonMappingException;
 import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -57,13 +57,13 @@ public class AuthControllerXmlTest extends AbstractIntegrationTest {
                 .contentType(TestConfigs.CONTENT_TYPE_XML)
                     .pathParam("username", tokenVO.getUsername())
                 .header(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + tokenVO.getRefreshToken())
-                .when()
-                    .put("{username}")
-                .then()
-                    .statusCode(200)
-                .extract()
-                    .body()
-                        .as(TokenVO.class); //Só pode ser salvo, pois, tem todos os atributos iguais o da aplicação se não deveria ser salvo como String.
+                    .when()
+                .put("{username}")
+                    .then()
+                        .statusCode(200)
+                        .extract()
+                        .body()
+                            .as(TokenVO.class); //Só pode ser salvo, pois, tem todos os atributos iguais o da aplicação se não deveria ser salvo como String.
 
         assertNotNull(newTokenVO.getAccessToken());
         assertNotNull(newTokenVO.getRefreshToken());
