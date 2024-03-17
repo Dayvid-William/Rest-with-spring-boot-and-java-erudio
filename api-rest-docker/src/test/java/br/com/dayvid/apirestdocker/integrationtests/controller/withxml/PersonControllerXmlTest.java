@@ -49,16 +49,16 @@ public class PersonControllerXmlTest extends AbstractIntegrationTest {
 		var accessToken = given()
 				.basePath("/auth/signin")
 				.port(TestConfigs.SERVER_PORT)
-				.contentType(TestConfigs.CONTENT_TYPE_XML)
-				.accept(TestConfigs.CONTENT_TYPE_XML)
+					.contentType(TestConfigs.CONTENT_TYPE_XML)
+					.accept(TestConfigs.CONTENT_TYPE_XML)
 				.body(user)
-				.when()
+					.when()
 				.post()
-				.then()
-				.statusCode(200)
-				.extract()
-				.body()
-				.asString();
+					.then()
+						.statusCode(200)
+						.extract()
+						.body()
+							.asString();
 
 		TokenVO token = objectMapper.readValue(accessToken, TokenVO.class);
 
@@ -85,13 +85,13 @@ public class PersonControllerXmlTest extends AbstractIntegrationTest {
 				.contentType(TestConfigs.CONTENT_TYPE_XML)
 				.accept(TestConfigs.CONTENT_TYPE_XML)
 				.body(person)
-				.when()
+					.when()
 				.post()
-				.then()
-				.statusCode(200)
-				.extract()
-				.body()
-				.asString();
+					.then()
+						.statusCode(200)
+						.extract()
+						.body()
+							.asString();
 
 		PersonVO persistedPerson = objectMapper.readValue(content, PersonVO.class);
 		person = persistedPerson;
@@ -121,13 +121,13 @@ public class PersonControllerXmlTest extends AbstractIntegrationTest {
 				.contentType(TestConfigs.CONTENT_TYPE_XML)
 				.accept(TestConfigs.CONTENT_TYPE_XML)
 				.body(person)
-				.when()
+					.when()
 				.post()
-				.then()
-				.statusCode(200)
-				.extract()
-				.body()
-				.asString();
+					.then()
+						.statusCode(200)
+						.extract()
+						.body()
+							.asString();
 
 		PersonVO persistedPerson = objectMapper.readValue(content, PersonVO.class);
 		person = persistedPerson;
@@ -156,14 +156,14 @@ public class PersonControllerXmlTest extends AbstractIntegrationTest {
 		var content = given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_XML)
 				.accept(TestConfigs.CONTENT_TYPE_XML)
-				.pathParam("id", person.getId())
-				.when()
+					.pathParam("id", person.getId())
+					.when()
 				.get("{id}")
-				.then()
-				.statusCode(200)
-				.extract()
-				.body()
-				.asString();
+					.then()
+						.statusCode(200)
+						.extract()
+						.body()
+							.asString();
 
 		PersonVO persistedPerson = objectMapper.readValue(content, PersonVO.class);
 		person = persistedPerson;
@@ -191,11 +191,11 @@ public class PersonControllerXmlTest extends AbstractIntegrationTest {
 		given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_XML)
 				.accept(TestConfigs.CONTENT_TYPE_XML)
-				.pathParam("id", person.getId())
-				.when()
+					.pathParam("id", person.getId())
+					.when()
 				.delete("{id}")
-				.then()
-				.statusCode(204);
+					.then()
+						.statusCode(204);
 	}
 
 	@Test
@@ -205,13 +205,13 @@ public class PersonControllerXmlTest extends AbstractIntegrationTest {
 		var content = given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_XML)
 				.accept(TestConfigs.CONTENT_TYPE_XML)
-				.when()
+					.when()
 				.get()
-				.then()
-				.statusCode(200)
-				.extract()
-				.body()
-				.asString();
+					.then()
+						.statusCode(200)
+						.extract()
+						.body()
+							.asString();
 
 		List<PersonVO> people = objectMapper.readValue(content, new TypeReference<List<PersonVO>>() {});
 
@@ -261,10 +261,10 @@ public class PersonControllerXmlTest extends AbstractIntegrationTest {
 		given().spec(specificationWithoutToken)
 				.contentType(TestConfigs.CONTENT_TYPE_XML)
 				.accept(TestConfigs.CONTENT_TYPE_XML)
-				.when()
+					.when()
 				.get()
-				.then()
-				.statusCode(403);
+					.then()
+						.statusCode(403);
 	}
 
 	private void mockPerson() {

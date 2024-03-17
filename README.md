@@ -144,4 +144,8 @@
 
 - Separating cors tests from authentication and controller tests
 
-- Creating PersonControllerJsonTest
+- Creating integration test PersonControllerJsonTest
+
+- Creating integration test PersonControllerXmlTest
+
+- Creating integration test PersonControllerYamlTest
