@@ -1,22 +1,26 @@
 package br.com.dayvid.apirestdocker.integrationtests.vo;
 
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class BookVO implements Serializable{
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
 
     private Long id;
     private String author;
+
     @JsonProperty("launch_date")
-    private Date launchDate;
+    private Date launch_date;
     private Double price;
     private String title;
 
@@ -39,12 +43,12 @@ public class BookVO implements Serializable{
         this.author = author;
     }
 
-    public Date getLaunchDate() {
-        return launchDate;
+    public Date getLaunch_date() {
+        return launch_date;
     }
 
-    public void setLaunchDate(Date launchDate) {
-        this.launchDate = launchDate;
+    public void setLaunch_date(Date launch_date) {
+        this.launch_date = launch_date;
     }
 
     public Double getPrice() {
@@ -69,7 +73,7 @@ public class BookVO implements Serializable{
         int result = super.hashCode();
         result = prime * result + ((author == null) ? 0 : author.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((launchDate == null) ? 0 : launchDate.hashCode());
+        result = prime * result + ((launch_date == null) ? 0 : launch_date.hashCode());
         result = prime * result + ((price == null) ? 0 : price.hashCode());
         result = prime * result + ((title == null) ? 0 : title.hashCode());
         return result;
@@ -94,10 +98,10 @@ public class BookVO implements Serializable{
                 return false;
         } else if (!id.equals(other.id))
             return false;
-        if (launchDate == null) {
-            if (other.launchDate != null)
+        if (launch_date == null) {
+            if (other.launch_date != null)
                 return false;
-        } else if (!launchDate.equals(other.launchDate))
+        } else if (!launch_date.equals(other.launch_date))
             return false;
         if (price == null) {
             if (other.price != null)

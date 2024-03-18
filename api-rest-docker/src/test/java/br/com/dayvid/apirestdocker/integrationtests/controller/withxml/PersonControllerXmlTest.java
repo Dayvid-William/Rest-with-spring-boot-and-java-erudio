@@ -65,8 +65,6 @@ public class PersonControllerXmlTest extends AbstractIntegrationTest {
 		assertNotNull(token);
 		assertNotNull(token.getAccessToken());
 
-
-
 		specification = new RequestSpecBuilder()
 				.addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + token.getAccessToken())
 				.setBasePath("/api/person/v1")
