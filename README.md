@@ -149,3 +149,5 @@
 - Creating integration test PersonControllerXmlTest
 
 - Creating integration test PersonControllerYamlTest
+
+- Creating integration test BookControllerJsonTest
