@@ -48,17 +48,18 @@ public class BookControllerXmlTest extends AbstractIntegrationTest {
 
 	@Test
 	@Order(0)
-	public void authorization() {
+	public void authorization() throws JsonProcessingException {
 		AccountCredentialsVO user = new AccountCredentialsVO("leandro", "admin123");
 
 		user.setUsername("leandro");
 		user.setPassword("admin123");
 
-		var token =
+		var accessToken =
 				given()
 						.basePath("/auth/signin")
 						.port(TestConfigs.SERVER_PORT)
-						.contentType(TestConfigs.CONTENT_TYPE_JSON)
+						.contentType(TestConfigs.CONTENT_TYPE_XML)
+						.accept(TestConfigs.CONTENT_TYPE_XML)
 						.body(user)
 							.when()
 						.post()
@@ -66,12 +67,13 @@ public class BookControllerXmlTest extends AbstractIntegrationTest {
 								.statusCode(200)
 									.extract()
 									.body()
-										.as(TokenVO.class)
-									.getAccessToken();
+										.asString();
+
+		TokenVO token = objectMapper.readValue(accessToken, TokenVO.class);
 
 		specification =
 				new RequestSpecBuilder()
-						.addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + token)
+						.addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + token.getAccessToken())
 						.setBasePath("/api/book/v1")
 						.setPort(TestConfigs.SERVER_PORT)
 						.addFilter(new RequestLoggingFilter(LogDetail.ALL))
@@ -120,13 +122,13 @@ public class BookControllerXmlTest extends AbstractIntegrationTest {
 				.contentType(TestConfigs.CONTENT_TYPE_XML)
 				.accept(TestConfigs.CONTENT_TYPE_XML)
 				.body(book)
-				.when()
+					.when()
 				.post()
-				.then()
-				.statusCode(200)
-				.extract()
-				.body()
-				.asString();
+					.then()
+						.statusCode(200)
+							.extract()
+							.body()
+								.asString();
 
 		BookVO bookUpdated = objectMapper.readValue(content, BookVO.class);
 
@@ -149,13 +151,13 @@ public class BookControllerXmlTest extends AbstractIntegrationTest {
 				.contentType(TestConfigs.CONTENT_TYPE_XML)
 				.accept(TestConfigs.CONTENT_TYPE_XML)
 				.pathParam("id", book.getId())
-				.when()
+					.when()
 				.get("{id}")
-				.then()
-				.statusCode(200)
-				.extract()
-				.body()
-				.asString();
+					.then()
+						.statusCode(200)
+							.extract()
+							.body()
+								.asString();
 
 		BookVO foundBook = objectMapper.readValue(content, BookVO.class);
 
@@ -177,10 +179,10 @@ public class BookControllerXmlTest extends AbstractIntegrationTest {
 				.contentType(TestConfigs.CONTENT_TYPE_XML)
 				.accept(TestConfigs.CONTENT_TYPE_XML)
 				.pathParam("id", book.getId())
-				.when()
+					.when()
 				.delete("{id}")
-				.then()
-				.statusCode(204);
+					.then()
+						.statusCode(204);
 	}
 
 	@Test
@@ -190,13 +192,13 @@ public class BookControllerXmlTest extends AbstractIntegrationTest {
 		var content = given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_XML)
 				.accept(TestConfigs.CONTENT_TYPE_XML)
-				.when()
+					.when()
 				.get()
-				.then()
-				.statusCode(200)
-				.extract()
-				.body()
-				.asString();
+					.then()
+						.statusCode(200)
+							.extract()
+							.body()
+								.asString();
 
 		List<BookVO> books = objectMapper.readValue(content, new TypeReference<List<BookVO>>() {});
 
