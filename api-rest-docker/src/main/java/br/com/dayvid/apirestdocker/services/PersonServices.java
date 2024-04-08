@@ -7,6 +7,7 @@ import br.com.dayvid.apirestdocker.exceptions.ResourceNotFoundException;
 import br.com.dayvid.apirestdocker.mapper.DozerMapper;
 import br.com.dayvid.apirestdocker.model.Person;
 import br.com.dayvid.apirestdocker.repositories.PersonRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -70,6 +71,19 @@ public class PersonServices {
 
         var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
         vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel()); //link o methodo findbyid do controler diretamente ao obj vo criado com auto relacionamento (cria endereço para ele mesmo)
+        return vo;
+    }
+
+    @Transactional//só e nessecesario pos o method não e controlado pelo spring e faz alterações de dados
+    public PersonVO disablePersons(Long id) {
+
+        logger.info("Disabling one person!");
+        repository.disablePerson(id);
+
+        var entity = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No Records found for this ID!"));
+        var vo = DozerMapper.parseObject(entity, PersonVO.class);
+        vo.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
         return vo;
     }
 
