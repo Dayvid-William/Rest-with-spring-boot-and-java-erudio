@@ -151,3 +151,13 @@
 - Creating integration test PersonControllerYamlTest
 
 - Creating integration test BookControllerJsonTest
+
+### The Patch Verb
+
+- Configuring application to suport the patch verb.
+
+- Creating method DisablePersons in the repository
+
+- Creating method DisablePersons in the services
+
+- Configuring Repository with @Modifying and services with @Transactional
