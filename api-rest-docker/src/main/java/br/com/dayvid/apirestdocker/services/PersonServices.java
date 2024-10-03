@@ -75,7 +75,7 @@ public class PersonServices {
     }
 
     @Transactional//só e nessecesario pos o method não e controlado pelo spring e faz alterações de dados
-    public PersonVO disablePersons(Long id) {
+    public PersonVO disablePerson(Long id) {
 
         logger.info("Disabling one person!");
         repository.disablePerson(id);
