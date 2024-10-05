@@ -161,3 +161,5 @@
 - Creating method DisablePersons in the services
 
 - Configuring Repository with @Modifying and services with @Transactional
+
+- Creating tests for method DisablePewrsons
