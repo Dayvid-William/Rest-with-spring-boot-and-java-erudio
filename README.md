@@ -163,3 +163,7 @@
 - Configuring Repository with @Modifying and services with @Transactional
 
 - Creating tests for method DisablePewrsons
+
+### Query Params and Paged Search
+
+- Using Mokaroo for generate query parms
