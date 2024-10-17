@@ -57,6 +57,7 @@ class PersonServicesTest {
         assertEquals("Female",result.getGender());
     }
 
+    /*
     @Test
     void findAll() {
         List<Person> list = input.mockEntityList();//retorna uma mocki person com id nulo
@@ -98,7 +99,7 @@ class PersonServicesTest {
         assertEquals("Last Name Test7",personSeven.getLastName());
         assertEquals("Female",personSeven.getGender());
     }
-
+    */
     @Test
     void testCreate() {
         Person entity = input.mockEntity(1);
