@@ -167,3 +167,7 @@
 ### Query Params and Paged Search
 
 - Using Mokaroo for generate query parms
+
+- Implementing Pageable
+
+-
