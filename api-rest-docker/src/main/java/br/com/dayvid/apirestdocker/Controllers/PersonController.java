@@ -13,9 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 //@CrossOrigin libera cross para todos a não ser que especifique quais metodos defem aceita cross
 @RestController //Funciona como @ResponseBody e @Controler cria uma map do model object e encontra uma viwer equivalente
@@ -46,9 +47,13 @@ public class PersonController {
     )
     public ResponseEntity<Page<PersonVO>> findAll(
             @RequestParam( value = "page", defaultValue = "0") Integer page,
-            @RequestParam( value = "limit", defaultValue = "12") Integer limit
+            @RequestParam( value = "size", defaultValue = "12") Integer size,
+            @RequestParam( value = "direction", defaultValue = "asc") String direction
         ) {
-        Pageable pageable = PageRequest.of(page, limit);
+
+        var sortdirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortdirection, "firstName"));
         return ResponseEntity.ok(service.findAll(pageable));
     }
 
