@@ -26,7 +26,7 @@ public class PersonServices {
     @Autowired //injeta o repository funciona como o server pois ambos são alias de @componety
     PersonRepository repository;
 
-    @Autowired //injeta o repository funciona como o server pois ambos são alias de @componety
+    @Autowired
     PagedResourcesAssembler<PersonVO> assembler;
     
     public PagedModel<EntityModel<PersonVO>> findAll(Pageable pageable){
