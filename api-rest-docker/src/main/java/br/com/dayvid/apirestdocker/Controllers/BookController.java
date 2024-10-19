@@ -1,6 +1,7 @@
 package br.com.dayvid.apirestdocker.Controllers;
 
 import br.com.dayvid.apirestdocker.data.vo.v1.BookVO;
+import br.com.dayvid.apirestdocker.data.vo.v1.PersonVO;
 import br.com.dayvid.apirestdocker.services.BookServices;
 import br.com.dayvid.apirestdocker.util.MediaType;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,6 +11,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,8 +47,15 @@ public class BookController {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
             }
     )
-    public List<BookVO> findAll() {
-        return service.findAll();
+    public ResponseEntity<PagedModel<EntityModel<BookVO>>> findAll(
+            @RequestParam( value = "page", defaultValue = "0") Integer page,
+            @RequestParam( value = "size", defaultValue = "12") Integer size,
+            @RequestParam( value = "direction", defaultValue = "asc") String direction
+    ) {
+        var sortdirection = "desc".equalsIgnoreCase(direction) ? Sort.Direction.DESC : Sort.Direction.ASC;
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortdirection, "title"));
+        return ResponseEntity.ok(service.findAll(pageable));
     }
 
     @GetMapping(value = "/{id}",
