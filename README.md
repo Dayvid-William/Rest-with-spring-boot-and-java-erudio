@@ -177,3 +177,5 @@
 - Passing parameters to pageable
 
 - Fixing broken integration tests of person endpoints
+
+- Fixed findAllTest with Json
