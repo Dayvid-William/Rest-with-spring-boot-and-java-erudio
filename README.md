@@ -179,3 +179,5 @@
 - Fixing broken integration tests of person endpoints
 
 - Fixed findAllTest with Json
+
+- Fixed the integrations tests broken with XML e YML
