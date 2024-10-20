@@ -51,13 +51,13 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 					.contentType(TestConfigs.CONTENT_TYPE_JSON)
 				.body(user)
 					.when()
-				.post()
-					.then()
-						.statusCode(200)
-							.extract()
-							.body()
-								.as(TokenVO.class) //Só pode ser salvo, pois, tem todos os atributos iguais o da aplicação se não deveria ser salvo como String.
-							.getAccessToken();
+					.post()
+				.then()
+					.statusCode(200)
+					.extract()
+					.body()
+						.as(TokenVO.class) //Só pode ser salvo, pois, tem todos os atributos iguais o da aplicação se não deveria ser salvo como String.
+						.getAccessToken();
 
 		specification = new RequestSpecBuilder()
 				.addHeader(TestConfigs.HEADER_PARAM_AUTHORIZATION, "Bearer " + accessToken)
@@ -77,12 +77,12 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 				.contentType(TestConfigs.CONTENT_TYPE_JSON)
 				.body(person)
 					.when()
-				.post()
-					.then()
-						.statusCode(200)
-						.extract()
-						.body()
-							.asString();
+					.post()
+				.then()
+					.statusCode(200)
+					.extract()
+					.body()
+						.asString();
 
 		PersonVO persistedPerson = objectMapper.readValue(content, PersonVO.class);
 		person = persistedPerson;
@@ -113,12 +113,12 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 				.contentType(TestConfigs.CONTENT_TYPE_JSON)
 				.body(person)
 					.when()
-				.post()
-					.then()
-						.statusCode(200)
-						.extract()
-						.body()
-							.asString();
+					.post()
+				.then()
+					.statusCode(200)
+					.extract()
+					.body()
+						.asString();
 
 		PersonVO persistedPerson = objectMapper.readValue(content, PersonVO.class);
 		person = persistedPerson;
@@ -185,7 +185,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 		var content = given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_JSON)
 				.pathParam("id", person.getId())
-				.when()
+					.when()
 					.get("{id}")
 				.then()
 					.statusCode(200)
@@ -220,10 +220,10 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 		given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_JSON)
 				.pathParam("id", person.getId())
-				.when()
-				.delete("{id}")
+					.when()
+					.delete("{id}")
 				.then()
-				.statusCode(204);
+					.statusCode(204);
 	}
 
 	@Test
@@ -232,6 +232,7 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 
 		var content = given().spec(specification)
 				.contentType(TestConfigs.CONTENT_TYPE_JSON)
+				.accept(TestConfigs.CONTENT_TYPE_JSON)
 				.queryParams("page", 3, "size", 10, "direction", "asc")
 					.when()
 					.get()
@@ -275,6 +276,43 @@ public class PersonControllerJsonTest extends AbstractIntegrationTest {
 		assertEquals("Tollady", foundPersonSix.getLastName());
 		assertEquals("03677 Helena Junction", foundPersonSix.getAddress());
 		assertEquals("Female", foundPersonSix.getGender());
+	}
+
+	@Test
+	@Order(7)
+	public void testFindByName() throws JsonMappingException, JsonProcessingException {
+
+		var content = given().spec(specification)
+				.contentType(TestConfigs.CONTENT_TYPE_JSON)
+				.accept(TestConfigs.CONTENT_TYPE_JSON)
+				.pathParam("firstName", "ayr")
+				.queryParams("page", 0, "size", 6, "direction", "asc")
+					.when()
+					.get("findPersonByName/{firstName}")
+				.then()
+						.statusCode(200)
+						.extract()
+						.body()
+							.asString();
+
+		WrapperPersonVO wrapper = objectMapper.readValue(content, WrapperPersonVO.class);
+		var people = wrapper.getEmbedded().getPersons();
+
+		PersonVO foundPersonOne = people.get(0);
+
+		assertNotNull(foundPersonOne.getId());
+		assertNotNull(foundPersonOne.getFirstName());
+		assertNotNull(foundPersonOne.getLastName());
+		assertNotNull(foundPersonOne.getAddress());
+		assertNotNull(foundPersonOne.getGender());
+		assertTrue(foundPersonOne.getEnabled());
+
+		assertEquals(1, foundPersonOne.getId());
+
+		assertEquals("Ayrton", foundPersonOne.getFirstName());
+		assertEquals("Senna", foundPersonOne.getLastName());
+		assertEquals("São Paulo", foundPersonOne.getAddress());
+		assertEquals("Male", foundPersonOne.getGender());
 	}
 
 	private void mockPerson() {

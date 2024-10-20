@@ -183,3 +183,5 @@
 - Fixed the integrations tests broken with XML e YML
 
 - Fixing broken integration tests of books endpoints
+
+- Implementing integration test for findByName method
