@@ -173,3 +173,5 @@
 - Adding sort by direction
 
 - Returning a page model
+
+- Passing parameters to pageable
