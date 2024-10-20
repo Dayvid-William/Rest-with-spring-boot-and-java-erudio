@@ -10,7 +10,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,7 +19,7 @@ import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-//@CrossOrigin libera cross para todos a não ser que especifique quais metodos defem aceita cross
+//@CrossOrigin libera cross para todos exceto se especifique quais metodos defem aceita cross
 @RestController //Funciona como @ResponseBody e @Controler cria uma map do model object e encontra uma viwer equivalente
 @RequestMapping("/api/person/v1") // Todas as operações em personVO vai ser neste controller
 @Tag(name = "People", description = "Endpoints for managing People") // altera o nome e a descrição da documentação dp swagger

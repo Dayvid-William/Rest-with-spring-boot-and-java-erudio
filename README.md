@@ -175,3 +175,5 @@
 - Returning a page model
 
 - Passing parameters to pageable
+
+- Fixing broken integration tests of person endpoints

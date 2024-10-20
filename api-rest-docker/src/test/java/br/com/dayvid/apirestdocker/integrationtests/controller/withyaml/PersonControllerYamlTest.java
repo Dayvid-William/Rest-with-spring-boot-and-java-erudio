@@ -6,6 +6,7 @@ import br.com.dayvid.apirestdocker.integrationtests.testcontainers.AbstractInteg
 import br.com.dayvid.apirestdocker.integrationtests.vo.AccountCredentialsVO;
 import br.com.dayvid.apirestdocker.integrationtests.vo.PersonVO;
 import br.com.dayvid.apirestdocker.integrationtests.vo.TokenVO;
+import br.com.dayvid.apirestdocker.integrationtests.vo.wrappers.WrapperPersonVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -19,8 +20,6 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
-import java.util.Arrays;
-import java.util.List;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -273,7 +272,7 @@ public class PersonControllerYamlTest extends AbstractIntegrationTest {
     @Order(6)
     public void testFindAll() throws JsonMappingException, JsonProcessingException {
 
-        var content = given().spec(specification)
+        var wrapper = given().spec(specification)
                 .config(
                         RestAssuredConfig
                                 .config()
@@ -289,9 +288,9 @@ public class PersonControllerYamlTest extends AbstractIntegrationTest {
                         .statusCode(200)
                         .extract()
                         .body()
-                            .as(PersonVO[].class, objectMapper);
+                            .as(WrapperPersonVO.class, objectMapper);
 
-        List<PersonVO> people = Arrays.asList(content);
+        var people = wrapper.getEmbedded().getPersons();
 
         PersonVO foundPersonOne = people.get(0);
 

@@ -5,6 +5,7 @@ import br.com.dayvid.apirestdocker.integrationtests.testcontainers.AbstractInteg
 import br.com.dayvid.apirestdocker.integrationtests.vo.AccountCredentialsVO;
 import br.com.dayvid.apirestdocker.integrationtests.vo.PersonVO;
 import br.com.dayvid.apirestdocker.integrationtests.vo.TokenVO;
+import br.com.dayvid.apirestdocker.integrationtests.vo.wrappers.WrapperPersonVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -17,8 +18,6 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertFalse;
@@ -252,7 +251,8 @@ public class PersonControllerXmlTest extends AbstractIntegrationTest {
 						.body()
 							.asString();
 
-		List<PersonVO> people = objectMapper.readValue(content, new TypeReference<List<PersonVO>>() {});
+		WrapperPersonVO wrapper = objectMapper.readValue(content, WrapperPersonVO.class);
+		var people = wrapper.getEmbedded().getPersons();
 
 		PersonVO foundPersonOne = people.get(0);
 
