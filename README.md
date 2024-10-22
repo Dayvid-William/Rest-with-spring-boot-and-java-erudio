@@ -185,3 +185,5 @@
 - Fixing broken integration tests of books endpoints
 
 - Implementing integration test for findByName method
+
+- Testing repositories

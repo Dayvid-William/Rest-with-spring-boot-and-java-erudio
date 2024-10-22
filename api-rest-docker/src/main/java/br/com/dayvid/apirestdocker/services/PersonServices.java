@@ -51,7 +51,7 @@ public class PersonServices {
     public PagedModel<EntityModel<PersonVO>> findPersonByName(String firstName ,Pageable pageable){
         logger.info("Finding all people!");
 
-        var personPage = repository.findPersonByName(firstName, pageable);
+        var personPage = repository.findPersonsByName(firstName, pageable);
 
         var personVosPage = personPage.map(p -> DozerMapper.parseObject(p, PersonVO.class));
         personVosPage.map(
