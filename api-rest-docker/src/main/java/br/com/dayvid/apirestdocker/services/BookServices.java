@@ -8,18 +8,17 @@ import br.com.dayvid.apirestdocker.exceptions.RequiredObjectIsNullException;
 import br.com.dayvid.apirestdocker.exceptions.ResourceNotFoundException;
 import br.com.dayvid.apirestdocker.mapper.DozerMapper;
 import br.com.dayvid.apirestdocker.model.Book;
+import br.com.dayvid.apirestdocker.model.Person;
 import br.com.dayvid.apirestdocker.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.stereotype.Service;
-import java.util.List;
 import java.util.logging.Logger;
 
 @Service //Serve para o spring boot veja esse como objeto que sera injetado em run time em outras classes da aplicação
@@ -63,14 +62,15 @@ public class BookServices {
         return vo;
     }
 
-    public BookVO create(BookVO book) {
+    public BookVO create(BookVO book){
 
-        if (book == null) throw new RequiredObjectIsNullException();
+        if(book == null) throw new RequiredObjectIsNullException();
 
         logger.info("Creating one book!");
+
         var entity = DozerMapper.parseObject(book, Book.class);
-        var vo =  DozerMapper.parseObject(repository.save(entity), BookVO.class);
-        vo.add(linkTo(methodOn(BookController.class).findById(vo.getKey())).withSelfRel());
+        var vo = DozerMapper.parseObject(repository.save(entity), BookVO.class);
+        vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel()); //link o methodo findbyid do controler diretamente ao obj vo criado com auto relacionamento (cria endereço para ele mesmo)
         return vo;
     }
 
