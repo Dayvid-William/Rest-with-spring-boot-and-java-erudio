@@ -14,10 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.List;
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
@@ -78,6 +75,7 @@ public class BookServicesTest {
         assertNotNull(result.getKey());
         assertNotNull(result.getLinks());
 
+        System.out.println(result.toString());
         assertTrue(result.toString().contains("links: [</api/book/v1/1>;rel=\"self\"]"));
         assertEquals("Some Author1", result.getAuthor());
         assertEquals("Some Title1", result.getTitle());

@@ -1,14 +1,11 @@
 package br.com.dayvid.apirestdocker.services;
 
 import br.com.dayvid.apirestdocker.Controllers.BookController;
-import br.com.dayvid.apirestdocker.Controllers.PersonController;
 import br.com.dayvid.apirestdocker.data.vo.v1.BookVO;
-import br.com.dayvid.apirestdocker.data.vo.v1.PersonVO;
 import br.com.dayvid.apirestdocker.exceptions.RequiredObjectIsNullException;
 import br.com.dayvid.apirestdocker.exceptions.ResourceNotFoundException;
 import br.com.dayvid.apirestdocker.mapper.DozerMapper;
 import br.com.dayvid.apirestdocker.model.Book;
-import br.com.dayvid.apirestdocker.model.Person;
 import br.com.dayvid.apirestdocker.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -70,7 +67,7 @@ public class BookServices {
 
         var entity = DozerMapper.parseObject(book, Book.class);
         var vo = DozerMapper.parseObject(repository.save(entity), BookVO.class);
-        vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel()); //link o methodo findbyid do controler diretamente ao obj vo criado com auto relacionamento (cria endereço para ele mesmo)
+        vo.add(linkTo(methodOn(BookController.class).findById(vo.getKey())).withSelfRel()); //link o methodo findbyid do controler diretamente ao obj vo criado com auto relacionamento (cria endereço para ele mesmo)
         return vo;
     }
 
