@@ -187,3 +187,5 @@
 - Implementing integration test for findByName method
 
 - Testing repositories
+
+- Implementing integration tests for HATEOAS 
