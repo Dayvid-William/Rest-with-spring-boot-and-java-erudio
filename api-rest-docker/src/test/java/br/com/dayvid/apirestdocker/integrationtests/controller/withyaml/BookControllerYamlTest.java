@@ -248,6 +248,46 @@ public class BookControllerYamlTest extends AbstractIntegrationTest {
         assertEquals(92.0, foundBookFive.getPrice());
     }
 
+    @Test
+    @Order(9)
+    public void testHATEOS() throws JsonMappingException, JsonProcessingException {
+
+        var unthreatedContent = given().spec(specification)
+                .config(
+                        RestAssuredConfig
+                                .config()
+                                .encoderConfig(EncoderConfig.encoderConfig()
+                                        .encodeContentTypeAs(
+                                                TestConfigs.CONTENT_TYPE_YML,
+                                                ContentType.TEXT)))
+                .contentType(TestConfigs.CONTENT_TYPE_YML)
+                .accept(TestConfigs.CONTENT_TYPE_YML)
+                .queryParams("page", 0, "size", 12, "direction", "asc")
+                    .when()
+                    .get()
+                .then()
+                    .statusCode(200)
+                    .extract()
+                    .body()
+                    .asString();
+
+        String content = unthreatedContent.replace("\n", "").replace("\r", "").replaceAll("\\s+", " ");
+
+        System.out.println(content);
+
+        assertTrue(content.contains("rel: \"self\" href: \"http://localhost:8888/api/book/v1/3\""));
+        assertTrue(content.contains("rel: \"self\" href: \"http://localhost:8888/api/book/v1/12\""));
+        assertTrue(content.contains("rel: \"self\" href: \"http://localhost:8888/api/book/v1/5\""));
+
+        assertTrue(content.contains("rel: \"first\" href: \"http://localhost:8888/api/book/v1?direction=asc&page=0&size=12&sort=title,asc\""));
+        assertTrue(content.contains("rel: \"self\" href: \"http://localhost:8888/api/book/v1?page=0&size=12&direction=asc\""));
+        assertTrue(content.contains("rel: \"next\" href: \"http://localhost:8888/api/book/v1?direction=asc&page=1&size=12&sort=title,asc\""));
+        assertTrue(content.contains("rel: \"last\" href: \"http://localhost:8888/api/book/v1?direction=asc&page=1&size=12&sort=title,asc\""));
+
+        assertTrue(content.contains("page: size: 12 totalElements: 15 totalPages: 2 number: 0"));
+
+    }
+
     private void mockBook() {
         book.setTitle("Docker Deep Dive");
         book.setAuthor("Nigel Poulton");

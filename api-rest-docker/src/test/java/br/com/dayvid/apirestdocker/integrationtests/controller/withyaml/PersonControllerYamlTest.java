@@ -422,9 +422,6 @@ public class PersonControllerYamlTest extends AbstractIntegrationTest {
 
         String content = unthreatedContent.replace("\n", "").replace("\r", "").replaceAll("\\s+", " ");
 
-
-        System.out.println(content);
-
         assertTrue(content.contains("rel: \"self\" href: \"http://localhost:8888/api/person/v1/419\""));
         assertTrue(content.contains("rel: \"self\" href: \"http://localhost:8888/api/person/v1/499\""));
         assertTrue(content.contains("rel: \"self\" href: \"http://localhost:8888/api/person/v1/389\""));
