@@ -189,3 +189,7 @@
 - Testing repositories
 
 - Implementing integration tests for HATEOAS
+
+### Uploading and downloading files
+
+- Set configs
