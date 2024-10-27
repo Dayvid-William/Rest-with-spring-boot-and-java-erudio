@@ -188,4 +188,4 @@
 
 - Testing repositories
 
-- Implementing integration tests for HATEOAS 
+- Implementing integration tests for HATEOAS
