@@ -192,4 +192,4 @@
 
 ### Uploading and downloading files
 
-- Set configs
+- Configuring file upload and download settings
