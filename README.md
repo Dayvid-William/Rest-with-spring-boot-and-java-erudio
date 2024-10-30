@@ -193,3 +193,5 @@
 ### Uploading and downloading files
 
 - Configuring file upload and download settings
+
+- Defining response VOs and exceptions.
