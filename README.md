@@ -194,4 +194,6 @@
 
 - Configuring file upload and download settings
 
-- Defining response VOs and exceptions.
+- Defining response VOs and exceptions
+
+- Configuring the file storege services
