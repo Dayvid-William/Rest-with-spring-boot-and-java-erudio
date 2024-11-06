@@ -199,3 +199,5 @@
 - Configuring the file storege services
 
 - Create FileController
+
+- Implementing upload multiple files method
