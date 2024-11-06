@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix = "file") // precisa ser customizada, pois não faz partes das configs padrões do Spring
+@ConfigurationProperties(prefix = "file")
 public class FileStorageConfig {
 
     private String uploadDir;
