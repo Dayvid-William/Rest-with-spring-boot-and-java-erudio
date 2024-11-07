@@ -57,8 +57,8 @@ public class FileStorageService {
             Resource resource = new UrlResource(filePath.toUri());
             if (resource.exists()) return resource;
             else throw new MyFileNotFoundException("File not found");
-        } catch (Exception e) {
-            throw new MyFileNotFoundException("File not found" + filename, e);
+        } catch (Exception e){
+            throw  new MyFileNotFoundException("File not found" + filename, e);
         }
     }
 
