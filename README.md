@@ -203,3 +203,11 @@
 - Implementing upload multiple files method
 
 - Preparing services to receive downloads
+
+## Docker
+
+- Creatinh a docker file.
+
+- Adding Docker Composer.
+
+- Configure the docker Composer.
