@@ -206,8 +206,10 @@
 
 ## Docker
 
-- Creatinh a docker file.
+- Creatinh a docker file
 
-- Adding Docker Composer.
+- Adding Docker Composer
 
-- Configure the docker Composer.
+- Configure the docker Composer
+
+- Creating container of the apllication with MySql
