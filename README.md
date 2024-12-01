@@ -213,3 +213,5 @@
 - Configure the docker Composer
 
 - Creating container of the apllication with MySql
+
+- Testing apllication through docker
