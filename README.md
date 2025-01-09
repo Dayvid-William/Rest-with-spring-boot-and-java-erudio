@@ -1,5 +1,9 @@
 # Rest-with-spring-boot-and-java-erudio
 
+## Docker Hub
+
+[![Docker Hub Repo](https://img.shields.io/docker/pulls/dayvidwilliam5/rest-with-spring-boot-erudio.svg)](https://hub.docker.com/repository/docker/dayvidwilliam5/rest-with-spring-boot-erudio)
+
 ## Separate course objectives in each module
 
 ### configure environment
@@ -215,3 +219,5 @@
 - Creating container of the apllication with MySql
 
 - Testing apllication through docker
+
+- Configuring accont in the docker hub
