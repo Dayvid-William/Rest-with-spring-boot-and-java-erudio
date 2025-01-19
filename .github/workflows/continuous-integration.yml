@@ -27,11 +27,11 @@ jobs:
         cache: maven
         
     - name: Build Application JAR
-      working-directory: ./Rest-with-spring-boot-and-java-erudio/api-rest-docker
+      working-directory: ./api-rest-docker
       run: mvn clean package
 
     - name: Docker Compose Build
-      working-directory: ./Rest-with-spring-boot-and-java-erudio
+      working-directory: ./
       run: docker compose biuld
 
     - name: Push to Docker Hub Conatainer Registry
