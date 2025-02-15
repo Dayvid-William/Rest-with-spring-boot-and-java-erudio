@@ -17,19 +17,19 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     
-    - name: Set up JDK 18
+    - name: Set up JDK 20
       uses: actions/setup-java@v3
       with:
-        java-version: '18'
+        java-version: '20'
         distribution: 'adopt'
         cache: maven
 
     - name: Build Application JAR
-      working-directory: ./22_DockerizingOurApp/rest-with-spring-boot-and-java-erudio
+      working-directory: ./rest-with-spring-boot-and-java-erudio/api-rest-docker
       run: mvn clean package
 
     - name: Docker Compose Build
-      working-directory: ./22_DockerizingOurApp
+      working-directory: ./rest-with-spring-boot-and-java-erudio
       run: docker compose build
 
     - name: Push to Docker Hub Container Registry
